@@ -23,9 +23,9 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ], 
+    ],
     "globals": {
-        "GPUBufferUsage" : "writable"
+      "GPUBufferUsage": "writable"
     }
   },
   "browserslist": {
