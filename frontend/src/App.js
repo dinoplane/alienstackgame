@@ -1,35 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
 import Canvas from "./Canvas";
+import AccountLandingPanel from "./AccountLandingPanel";
 
 // import { create, globals } from 'webgpu';
 
 function App() {
   const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
+  const [error, setError] = React.useState(null);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   return (
     <div className="App">
-       
       <header className="App-header">
-        
-      <Canvas />
-
+        <Canvas />
         <div className="AppUiOverlay">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>{!data ? "Loading..." : data}</p>  
+          <AccountLandingPanel />
         </div>
-        
       </header>
-
-
     </div>
   );
 }

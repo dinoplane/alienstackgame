@@ -1,0 +1,29 @@
+{
+  "name": "alienstackgame",
+  "version": "1.0.0",
+  "description": "db                  - player positions / player ids / ip\r backend             - processes player requests\r frontend            - game itself",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/index.js",
+    "init-table": "node backend/services/dbConnect createTables"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "http": "^0.0.1-security",
+    "install": "^0.13.0",
+    "make-runnable": "^1.4.1",
+    "pg": "^8.14.1",
+    "webgpu": "^0.2.11"
+  },
+  "devDependencies": {
+    "prettier": "3.5.3"
+  }
+}
