@@ -12,7 +12,18 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const cors = require("cors");
+app.use(cors({
+    origin: 'localhost:3000', // allow requests from this origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
+
+
 // register the routes 
 app.use('/', routes);
+
+
 
 module.exports = app;

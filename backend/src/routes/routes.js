@@ -11,7 +11,10 @@ const createUser = require("./controllers/createUser.js");
 
 router.get("/api", test.test);
 
-router.post("/create-user", createUser.createUser);
+router.post("/create-user", (req, res) => {createUser.createUser(req, res);});
+
+// router.post("/login", (req, res) => {createUser.login(req, res);});
+
 
 
 module.exports = router;

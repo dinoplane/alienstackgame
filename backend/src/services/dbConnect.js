@@ -1,12 +1,13 @@
 
 const pg = require("pg");
+require('dotenv').config(); // Load environment variables from .env file
 
 const config = {
-  user: "postgres",
-  password: "Isacsac@3926",
-  port: 5432,
-  host: "localhost",
-  database: "postgres",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000,
 };
@@ -22,8 +23,7 @@ const createTables = () => { // TODO Change this later, the passowrd should be a
     users(
       user_id SERIAL PRIMARY KEY,
       username VARCHAR(128) NOT NULL,
-      password_hash VARCHAR(72) NOT NULL
-      salt VARCHAR(128) NOT NULL,
+      password_hash VARCHAR(62) NOT NULL,
       last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )`;

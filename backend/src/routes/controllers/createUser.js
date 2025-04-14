@@ -5,6 +5,7 @@ exports.createUser = (req, res) => {
     // create the user here...
     const saltRounds = 10;
     const { username, password } = req.body;
+    console.log(username, password);
 
     if (username.length < 4) {
         return res.status(400).json({ message: "Username must be at least 4 characters long" });
@@ -23,14 +24,18 @@ exports.createUser = (req, res) => {
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(password, salt, function(err, hash) {
             // Store hash in your password DB.
-            const insertQuery = `INSERT INTO users (username, password_hash, salt) VALUES ($1, $2, $3)`;
-            const values = [username, hash, salt];
-            db.pool.query(insertQuery, values, (err, result) => {
-                if (err) {
+            console.log(hash.length);
+            db.pool.connect((err, client) => {
+                const insertQuery = `INSERT INTO users (username, password_hash) VALUES ($1, $2)`;
+                const values = [username, hash];
+                client.query(insertQuery, values)
+                .then( (output) => {
+                    res.status(201).json({ message: "User created successfully" });
+                })
+                .catch((err) => {
                     console.error(err);
-                    return res.status(500).json({ message: "Error creating user" });
-                }
-                res.status(201).json({ message: "User created successfully" });
+                    res.status(500).json({ message: "Error creating user" });
+                })
             });
         });
     });

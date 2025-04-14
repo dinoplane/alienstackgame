@@ -2,6 +2,7 @@
 
 const http = require('http');
 const app = require("./app.js");
+require('dotenv').config();
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
@@ -15,10 +16,7 @@ const normalizePort = val => {
   return false;
 };
 
-
-// const PORT = process.env.PORT || 3001;
-
-const port = normalizePort(process.env.PORT || '3001');
+const port = normalizePort(process.env.PORT);
 app.set('port', port);
 
 const errorHandler = error => {
@@ -50,6 +48,6 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server listening on ${port}`);
 });

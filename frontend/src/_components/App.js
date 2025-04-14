@@ -1,8 +1,13 @@
+
+
+'use client'
+ 
+
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-import Canvas from "./Canvas";
+import Canvas from "./components/Canvas";
 import AccountLandingPanel from "./AccountLandingPanel";
 
 // import { create, globals } from 'webgpu';

@@ -1,3 +1,8 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
 .App {
   text-align: center;
   width: 100%;
@@ -83,4 +88,16 @@ canvas{
 .account-landing-panel label {
   font-size: calc(10px + 2vmin);
   color: black  ;
+}
+
+.account-creation-error-panel {
+  width: 100%;
+  height: 100%;;
+  background-color: #ff8c8c;
+}
+
+.account-creation-error-panel > * {
+  color: black;
+  font-size: calc(10px + 2vmin);
+  text-align: center;
 }
