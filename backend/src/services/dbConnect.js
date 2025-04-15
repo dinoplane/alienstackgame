@@ -19,14 +19,18 @@ pool.on("connect", () => {
 });
 
 const createTables = () => { // TODO Change this later, the passowrd should be as long as possible
-  const userTableQuery = `CREATE TABLE IF NOT EXISTS
+  
+  const pgCryptoExtensionQuery = `CREATE EXTENSION IF NOT EXISTS "pgcrypto"`;
+  const userTableQuery = `
+    CREATE TABLE IF NOT EXISTS
     users(
-      user_id SERIAL PRIMARY KEY,
+      user_id UUID UNIQUE PRIMARY KEY DEFAULT gen_random_uuid(),
       username VARCHAR(128) NOT NULL,
       password_hash VARCHAR(62) NOT NULL,
       last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )`;
+    
 
   // const objectTableQuery = `CREATE TABLE IF NOT EXISTS
   //   objects(
@@ -35,6 +39,13 @@ const createTables = () => { // TODO Change this later, the passowrd should be a
   //     description TEXT,
   //     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   //   )`;
+  pool.query(pgCryptoExtensionQuery)
+    .then((res) => {
+      console.log("pgcrypto extension created");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   pool
     .query(userTableQuery)
