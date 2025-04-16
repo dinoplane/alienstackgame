@@ -39,25 +39,25 @@ const createTables = () => { // TODO Change this later, the passowrd should be a
   //     description TEXT,
   //     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   //   )`;
-  pool.query(pgCryptoExtensionQuery)
-    .then((res) => {
-      console.log("pgcrypto extension created");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+//   pool.query(pgCryptoExtensionQuery)
+//     .then((res) => {
+//       console.log("pgcrypto extension created");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
 
-  pool
-    .query(userTableQuery)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
-};
+//   pool
+//     .query(userTableQuery)
+//     .then((res) => {
+//       console.log(res);
+//       pool.end();
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       pool.end();
+//     });
+// };
 
 pool.on("remove", () => {
   console.log("client removed");

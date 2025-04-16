@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const db = require("../../services/dbConnect.js");
 
 exports.createUser = async (req, res) => {
@@ -12,7 +11,10 @@ exports.createUser = async (req, res) => {
         RETURNING username 
         `,
         [`${req.body.username}`, `${req.body.password}`]
-    )
+    ).catch((err) => {
+        console.log(err);
+        res.status(400).json({ message: "User creation failed" });
+    });
     if (rows.length) {
         res.status(201).json({ message: "User created successfully" });
     } else {

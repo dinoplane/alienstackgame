@@ -1,5 +1,5 @@
-async function CreateUser(username, password){
-    const data = await fetch("/create-user", {
+async function LoginUser(username, password){
+    const data = await fetch("/login-user", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -10,9 +10,12 @@ async function CreateUser(username, password){
         }),
     })
         .then((res) => res.json())
-        .then((data) => console.log(data.message))
+        .then((data) => {
+            console.log(data.accessToken)
+            localStorage.setItem("accessToken", data.accessToken);
+        })
         .catch((err) => console.error(err));
     return data;
 }
 
-export default CreateUser;
+export default LoginUser;

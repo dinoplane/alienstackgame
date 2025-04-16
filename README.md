@@ -4,8 +4,8 @@ frontend - game itself
 
 
 TODO: Get authorization done
-TODO: Integrate JWT
-TODO: get login func done
+TEST: Integrate JWT
+TEST: get login func done
 TODO: Integrate material UI
 TODO: Integrate Swagger UI
 TODO: Write frontend tests
